@@ -31,8 +31,8 @@ namespace BudgetBay.Controllers
                     }
                 },
                 Mode = "payment",
-                SuccessUrl = "",
-                CancelUrl = "",
+                SuccessUrl = "http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}",
+                CancelUrl = "http://localhost:5173/cancel",
             };
 
             var service = new SessionService();
