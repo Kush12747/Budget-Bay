@@ -7,7 +7,7 @@ namespace BudgetBay.DTOs
 
     public class UserBidDto
     {
-        public string Username { get; set; }
+        public string Username { get; set; } = string.Empty;
         public decimal Amount { get; set; }
     }
 }

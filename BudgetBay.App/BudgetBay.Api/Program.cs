@@ -9,16 +9,16 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using AutoMapper;
 using CloudinaryDotNet;
+using Stripe;
+using CloudinaryAccount = CloudinaryDotNet.Account;
+using StripeProductService = Stripe.ProductService;
 
 namespace BudgetBay;
 
 public class Program
 {
-
     public static void Main(string[] args)
     {
-
-
         var builder = WebApplication.CreateBuilder(args);
 
         Log.Logger = new LoggerConfiguration()
@@ -66,14 +66,20 @@ public class Program
             options => options.UseSqlServer(connectionString)
         );
 
+        // --- Stripe Configuration ---
+        StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+        var stripeService = new Stripe.ProductService(); // explicitly reference Stripe namespace
+        builder.Services.AddSingleton(stripeService);
+
         // --- Cloudinary Configuration ---
         var cloudName = builder.Configuration["Cloudinary:CloudName"];
         var apiKey = builder.Configuration["Cloudinary:ApiKey"];
         var apiSecret = builder.Configuration["Cloudinary:ApiSecret"];
 
-        // Create Cloudinary instance
-        var cloudinary = new Cloudinary(new Account(cloudName, apiKey, apiSecret));
-        builder.Services.AddSingleton(cloudinary); // Register in DI
+        var account = new CloudinaryAccount(cloudName, apiKey, apiSecret);
+        var cloudinary = new Cloudinary(account);
+
+        builder.Services.AddSingleton(cloudinary);
         
         // --- Dependency Injection Registration ---
         // Repositories
@@ -86,7 +92,7 @@ public class Program
         // Services
         builder.Services.AddScoped<IAuthService, AuthService>();
         builder.Services.AddScoped<IUserService, UserService>();
-        builder.Services.AddScoped<IProductService, ProductService>();
+        builder.Services.AddScoped<IProductService, BudgetBay.Services.ProductService>();
         builder.Services.AddScoped<IBidService, BidService>();
         builder.Services.AddScoped<IProfileService, ProfileService>();
 
