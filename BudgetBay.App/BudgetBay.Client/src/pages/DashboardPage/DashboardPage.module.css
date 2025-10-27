@@ -1,0 +1,379 @@
+.dashboardContainer {
+    width: 80vw;
+    max-width: 1080px;
+    margin: 20px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboardHeader {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.welcomeMessage {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #111827; /* Darker Gray */
+    margin-bottom: 8px;
+}
+
+.dashboardHeader p {
+    font-size: 1.1rem;
+    color: #4b5563; /* Medium Gray */
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+.topGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    /* margin-bottom: 30px; */
+}
+
+.dashboardSection {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb; /* Light Gray Border */
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 15px;
+}
+
+.sectionTitle {
+    font-size: 1.75rem;
+    color: #374151; /* Dark Gray */
+    margin: 0;
+}
+
+.actionButton {
+    background-color: #6d28d9; /* Purple */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.actionButton:hover {
+    background-color: #5b21b6; /* Darker Purple */
+    transform: translateY(-1px);
+}
+
+/* Grid for Products, Bids, and Won Auctions */
+.contentGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background-color: #f9fafb; /* Off-white */
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover {
+    border-color: #a78bfa; /* Light Purple */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.07);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #1f2937;
+    font-size: 1.2rem;
+}
+
+.card p {
+    margin: 8px 0 0;
+    color: #4b5563;
+}
+
+.emptyCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 150px;
+}
+
+.emptyText {
+    margin: 0 0 20px 0;
+    font-size: 1rem;
+    color: #6b7280;
+}
+
+.messageContainer {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    position: relative;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.loading, .error, .empty {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #6b7280;
+    padding: 50px 20px;
+    background-color: #fff;
+    border-radius: 12px;
+}
+
+
+/* --- START: PROFILE UPLOAD STYLES --- */
+.profileCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileImageContainer {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.profileImageLabel {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    border: 3px solid #e5e7eb;
+}
+
+.profileImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profileImageOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.profileImageLabel:hover .profileImageOverlay {
+    opacity: 1;
+}
+
+.uploadingOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #6d28d9;
+    animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.uploadError {
+    margin-top: 15px;
+    text-align: center;
+    width: 100%;
+}
+/* --- END: PROFILE UPLOAD STYLES --- */
+
+
+/* Address Form Styles */
+.addressDisplay p {
+    margin: 4px 0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.addressForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.addressForm input:nth-child(2), /* Street Name */
+.addressForm input:nth-child(3) { /* Apt Number */
+    grid-column: span 2;
+}
+
+.addressForm input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.formActions {
+    grid-column: span 2;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.cancelButton {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.cancelButton:hover {
+    background-color: #d1d5db;
+    transform: translateY(-1px);
+}
+
+.errorMessage {
+    color: #ef4444;
+    font-size: 0.9rem;
+    grid-column: span 2;
+}
+
+/* --- TABLET STYLES --- */
+@media (max-width: 1024px) {
+    .dashboardContainer {
+        padding: 30px;
+    }
+
+    /* Stack Info and Address sections */
+    .topGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .welcomeMessage {
+        font-size: 2.5rem;
+    }
+}
+
+/* --- MOBILE STYLES --- */
+@media (max-width: 768px) {
+    .dashboardContainer {
+        padding: 20px;
+        margin-top: 10px;
+    }
+
+    .welcomeMessage {
+        font-size: 2.1rem;
+    }
+
+    .sectionHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .dashboardSection {
+        padding: 25px;
+    }
+
+    /* Make address form single-column on mobile */
+    .addressForm {
+        grid-template-columns: 1fr;
+    }
+    .addressForm input {
+        grid-column: span 1 !important;
+    }
+    .formActions {
+        grid-column: span 1;
+    }
+    .errorMessage {
+        grid-column: span 1;
+    }
+}
+
+/* --- ADDED FOR CARD ACTIONS --- */
+
+.card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card a:hover h3 {
+    text-decoration: underline;
+    color: #6d28d9; /* Purple */
+}
+
+.cardActions {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.editButton {
+    background-color: #f3f4f6; /* Light gray */
+    color: #374151;
+    padding: 8px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.editButton:hover {
+    background-color: #e5e7eb;
+    border-color: #9ca3af;
+    color: #111827;
+    transform: translateY(-1px);
+}

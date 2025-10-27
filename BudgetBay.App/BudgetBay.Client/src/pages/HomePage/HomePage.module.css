@@ -1,0 +1,28 @@
+.homepageContainer {
+  width: 80vw;
+  max-width: 1080px;
+  margin: 20px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 5.2rem - 40px); 
+  text-align: center;
+}
+
+.headerBlock {
+  height: 80px; 
+  margin-bottom: 20px;
+}
+
+.searchBarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.productListContainer {
+  flex: 1;
+  min-height: 0;
+}

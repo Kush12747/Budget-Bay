@@ -1,0 +1,22 @@
+.mainbackground {
+    height: auto;
+    width: 100%;
+}
+
+.resultsContainer {
+    padding: 40px;
+    width: 80vw;
+    max-width: 1080px;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    text-align: center;
+}
+
+.resultsContainer h1 {
+    margin-bottom: 20px;
+}
+
+.resultsContainer p {
+    font-size: 1.2rem;
+}
