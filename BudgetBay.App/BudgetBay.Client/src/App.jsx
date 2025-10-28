@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -11,6 +11,9 @@ import ProductEditPage from './pages/ProductEditPage/ProductEditPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import CheckoutButton from './components/common/CheckoutButton';
+import Success from './pages/StripePage/Success';
+import Cancel from './pages/StripePage/Cancel';
 
 function App() {
   return (
@@ -22,7 +25,9 @@ function App() {
         <Route path="/signup" element={<RegisterPage />} />
         <Route path="/search" element={<SearchResultsPage />} />
         <Route path="/products/:productId" element={<ProductDetailsPage />} />
-       
+        <Route path="/checkout" element={<CheckoutButton productName="" amount={0} />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/cancel" element={<Cancel />} />
         
         <Route 
           path="/dashboard" 
@@ -51,7 +56,6 @@ function App() {
       </Routes>
       <Footer />
     </>
-
   )
 }
 
