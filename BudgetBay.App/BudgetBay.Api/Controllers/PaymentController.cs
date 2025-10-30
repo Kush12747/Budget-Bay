@@ -11,6 +11,8 @@ namespace BudgetBay.Controllers
         [HttpPost("create-checkout-session")]
         public ActionResult CreateCheckoutSession([FromBody] PaymentRequestDto request)
         {
+            var domain = "http://localhost:5173/";
+
             var options = new SessionCreateOptions
             {
                 PaymentMethodTypes = new List<string> { "card" },
@@ -39,6 +41,18 @@ namespace BudgetBay.Controllers
             var session = service.Create(options);
 
             return Ok(new { url = session.Url });
+        }
+
+        [HttpGet("session/{sessionId}")]
+        public ActionResult GetSession(string sessionId)
+        {
+            var service = new SessionService();
+            var session = service.Get(sessionId);
+
+            if (session == null)
+                return NotFound();
+
+            return Ok(session);
         }
     }
 }

@@ -1,40 +1,42 @@
-import React, { useState } from 'react';
+// src/components/common/CheckoutButton.jsx
 import axios from "axios";
 
-export default function CheckoutButton({ productName, amount}) {
-    const [loading, setLoading] = useState(false);
+const CheckoutButton = ({ productName, amount, currency = "usd" }) => {
+  const handleCheckout = async () => {
+    try {
+      const response = await axios.post("http://localhost:5192/api/payments/create-checkout-session", {
+        productName,
+        amount,
+        currency,
+      });
 
-    const handleCheckout = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.post("http://localhost:5000/api/payments/create-checkout-session", {
-                productName,
-                amount
-            });
-            //Redirect to Stripe checkout
-            window.location.href = response.data.url;
-        } catch (error) {
-            console.error(error);
-            alert("Failed to create checkout session");
-        } finally {
-            setLoading(false);
-        }
-    };
+      if (response.data.url) {
+        window.location.href = response.data.url;
+      } else {
+        alert("Something went wrong: no URL returned");
+      }
+    } catch (error) {
+      console.error("Checkout failed:", error);
+      alert("Failed to create a checkout page");
+    }
+  };
 
-    return ( 
-        <button
-            onClick={handleCheckout}
-            disabled={loading}
-            style={{
-            padding: "12px 24px",
-                backgroundColor: "#6772E5",
-                color: "white",
-                border: "none",
-                borderRadius: "4px",
-                cursor: "pointer"  
-            }}
-        >
-            {loading ? "Loading..." : `Pay $${amount}`}
-        </button>
-    );
-}
+  return (
+    <button
+      onClick={handleCheckout}
+      style={{
+        backgroundColor: "#635bff",
+        color: "#fff",
+        padding: "12px 20px",
+        border: "none",
+        borderRadius: "6px",
+        cursor: "pointer",
+        fontWeight: "bold",
+      }}
+    >
+      Buy with Stripe
+    </button>
+  );
+};
+
+export default CheckoutButton;

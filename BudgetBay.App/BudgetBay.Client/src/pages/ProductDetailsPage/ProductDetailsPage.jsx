@@ -8,6 +8,7 @@ import BidForm from '../../components/product/BidForm';
 import AuctionInfo from '../../components/product/AuctionInfo';
 import BidHistory from '../../components/product/BidHistory';
 import styles from './ProductDetailsPage.module.css';
+import CheckoutButton from '../../components/common/CheckoutButton';
 
 const ProductDetailsPage = () => {
     const { productId } = useParams();
@@ -108,6 +109,11 @@ const ProductDetailsPage = () => {
                         onBidChange={(e) => setBidAmount(e.target.value)}
                         isBidding={isBidding}
                         isLoggedIn={!!user}
+                    />
+                    <CheckoutButton 
+                        productName={product.name} 
+                        amount={product.price} 
+                        currency="usd" 
                     />
                     <BidHistory bidsList={product.bids || []} />
                 </div>
